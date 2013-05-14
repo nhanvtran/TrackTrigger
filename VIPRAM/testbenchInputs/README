@@ -1,0 +1,72 @@
+Code for creating test inputs for the protoVIPRAM
+Nhan Tran (ntran@fnal.gov)
+
+--------------------------------------
+--------------------------------------
+--------------------------------------
+Inputs are built in two steps:
+1. Create a ROOT file which is a facsimile of the timing diagram we want
+2. Convert the ROOT file to an input file (binary format)
+
+--------------------------------------
+--------------------------------------
+--------------------------------------
+Classes:
+Step 1 is performed by 'pVIPRAM_inputBuilderClass.py'
+Step 2 is performed by 'pVIPRAM_inputVisualizerClass.py'
+
++++++++++++++++++++++++++++++++++++
+* pVIPRAM_inputBuilderClass.py * 
+
+constructor: 
+inputBuilder( filename ) - filename is the name of the output ROOT file
+
+methods:
+initializeLoadPhase() 
+	-- initializes chip for load mode
+loadUniformPatterns(row, col, iVal, disableInputs = 1)
+	-- puts the value iVal into all 4 layers of row/co; disableInputs are 1 by default 
+        which means the road is ON, user can set to 0 to disable that road
+loadSinglePattern(row, col, iVal, disableInputs = 1)
+	-- same as 'loadUniformPatterns', but 'iVal' is a python list of length 4 and different 
+        values can be input per layer
+initializeRunPhase(logic = [1,1,1,1])
+	-- initializes chip for run mode, by default the logic is [1,1,1,1] which means 
+        miss0, miss1, miss2, requireLayerA are all enabled, user can change the chip majority logic
+checkPattern(pattern)
+	-- in run mode, searches for 'pattern' where 'pattern' is a python list of length 4,
+        if 'iVal[i]' is less than 0, the input is disabled
+readOutMode(logic = [-99,-99,-99,-99])
+	-- reads out chip, creates 128 cycles reading out each row; 
+        default logic is the same set when initializing run phase, but can be changed
+close()
+	-- closes the ROOT file
+getFilename()
+	-- gets the name of the ROOT file
+
++++++++++++++++++++++++++++++++++++
+* pVIPRAM_inputVisualizerClass.py * 
+
+constructor: 
+inputVisualizer( filename ) - filename is the name of the input ROOT file
+
+methods:
+textVisualizer() - writes out the contents of ROOT file interactively
+writeToText( filename ) - creates an input file of the name 'filename' to be input to the pVIPRAM
+
+--------------------------------------
+--------------------------------------
+--------------------------------------
+Example:
+        tmpInput_miss1 = inputBuilder( "tmpInput_miss1.root" );
+        tmpInput_miss1.initializeLoadPhase();
+        tmpInput_miss1.loadSinglePattern(0, 0, [2,99,2,2]); # row, col, input value
+        tmpInput_miss1.initializeRunPhase( [0,1,0,0] ); # choose majority logic (miss0, miss1, miss2, layerA)
+        tmpInput_miss1.checkPattern( [2,0,2,2] ); # run mode, look for a single pattern
+	tmpInput_miss1.readOutMode();
+        tmpInput_miss1.close();
+        tmpVisualizer_miss1 = inputVisualizer( tmpInput_miss1.getFilename() );
+	tmpVisualizer_miss1.textVisualizer();
+        tmpVisualizer_miss1.writeToText( "tmpInput_miss1.txt" );
+
+
