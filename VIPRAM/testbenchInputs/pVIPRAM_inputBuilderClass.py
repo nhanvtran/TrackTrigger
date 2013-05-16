@@ -357,7 +357,7 @@ class inputBuilder:
 
     # -------------------
     # checkPattern
-    def checkPattern(self, pattern):
+    def checkPattern(self, pattern, specificRow = 0):
         if not len(pattern) == 4: 
             print "=========== Error in pattern format!";
             return;
@@ -366,6 +366,8 @@ class inputBuilder:
 
             self.MLpreCh[0] = 1;
             self.EventReset[0] = 0;
+            
+            self.RowAdr[0] = specificRow;            
 
             if pattern[0] >= 0: self.InputA[0] = pattern[0];
             else: self.InputA[0] = 0;
