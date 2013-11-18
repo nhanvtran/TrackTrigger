@@ -1,0 +1,73 @@
+Active-HDL 9.2.2499.sp1.36.4586  2013-05-13 10:08:03
+
+Elaboration top modules:
+Architecture                  testbench_arch(testbench)
+
+
+-------------------------------------------------------------------------------------------------------------------
+Entity             | Architecture         | Library | Info | Compiler Version                | Compilation Options
+-------------------------------------------------------------------------------------------------------------------
+testbench          | testbench_arch       | vipram  |      | 9.2.2499.sp1.36.4586  (Windows) | -dbg
+top                | top_arch             | vipram  |      | 9.2.2499.sp1.36.4586  (Windows) | -dbg
+ltc3447            | ltc3447_arch         | vipram  |      | 9.2.2499.sp1.36.4586  (Windows) | -dbg
+MezzClock          | xilinx               | vipram  |      | 9.2.2499.sp1.36.4586  (Windows) | -dbg
+vipram_rom         | vipram_rom_arch      | vipram  |      | 9.2.2499.sp1.36.4586  (Windows) | -dbg
+oddr               | oddr_v               | unisim  |      | 9.2.2499.sp1.36.4586  (Windows) | -vendor xilinx
+power              | power_arch           | vipram  |      | 9.2.2499.sp1.36.4586  (Windows) | -dbg
+chipscope_icon     | chipscope_icon_a     | vipram  |      | 9.2.2499.sp1.36.4586  (Windows) | -dbg
+chipscope_ila      | chipscope_ila_a      | vipram  |      | 9.2.2499.sp1.36.4586  (Windows) | -dbg
+ibufgds            | ibufgds_v            | unisim  |      | 9.2.2499.sp1.36.4586  (Windows) | -vendor xilinx
+mmcme2_adv         | mmcme2_adv_v         | unisim  |      | 9.2.2499.sp1.36.4586  (Windows) | -vendor xilinx
+bufg               | bufg_v               | unisim  |      | 9.2.2499.sp1.36.4586  (Windows) | -vendor xilinx
+kcpsm6             | low_level_definition | vipram  |      | 9.2.2499.sp1.36.4586  (Windows) | -dbg
+mezzanine          | low_level_definition | vipram  |      | 9.2.2499.sp1.36.4586  (Windows) | -dbg
+lut6_2             | lut6_2_v             | unisim  |      | 9.2.2499.sp1.36.4586  (Windows) | -vendor xilinx
+fd                 | fd_v                 | unisim  |      | 9.2.2499.sp1.36.4586  (Windows) | -vendor xilinx
+lut6               | lut6_v               | unisim  |      | 9.2.2499.sp1.36.4586  (Windows) | -vendor xilinx
+fdr                | fdr_v                | unisim  |      | 9.2.2499.sp1.36.4586  (Windows) | -vendor xilinx
+xorcy              | xorcy_v              | unisim  |      | 9.2.2499.sp1.36.4586  (Windows) | -vendor xilinx
+muxcy              | muxcy_v              | unisim  |      | 9.2.2499.sp1.36.4586  (Windows) | -vendor xilinx
+fdre               | fdre_v               | unisim  |      | 9.2.2499.sp1.36.4586  (Windows) | -vendor xilinx
+ram32m             | ram32m_v             | unisim  |      | 9.2.2499.sp1.36.4586  (Windows) | -vendor xilinx
+fds                | fds_v                | unisim  |      | 9.2.2499.sp1.36.4586  (Windows) | -vendor xilinx
+ram64m             | ram64m_v             | unisim  |      | 9.2.2499.sp1.36.4586  (Windows) | -vendor xilinx
+ram128x1s          | ram128x1s_v          | unisim  |      | 9.2.2499.sp1.36.4586  (Windows) | -vendor xilinx
+ram256x1s          | ram256x1s_v          | unisim  |      | 9.2.2499.sp1.36.4586  (Windows) | -vendor xilinx
+ramb16bwer         | ramb16bwer_v         | unisim  |      | 9.2.2499.sp1.36.4586  (Windows) | -vendor xilinx
+ramb18e1           | ramb18e1_v           | unisim  |      | 9.2.2499.sp1.36.4586  (Windows) | -vendor xilinx
+rb18_internal_vhdl | rb18_internal_vhdl_v | unisim  |      | 9.2.2499.sp1.36.4586  (Windows) | -vendor xilinx
+ramb36e1           | ramb36e1_v           | unisim  |      | 9.2.2499.sp1.36.4586  (Windows) | -vendor xilinx
+rb36_internal_vhdl | rb36_internal_vhdl_v | unisim  |      | 9.2.2499.sp1.36.4586  (Windows) | -vendor xilinx
+jtag_loader_6      | behavioral           | vipram  |      | 9.2.2499.sp1.36.4586  (Windows) | -dbg
+bscan_spartan6     | bscan_spartan6_v     | unisim  |      | 9.2.2499.sp1.36.4586  (Windows) | -vendor xilinx
+bscan_virtex6      | bscan_virtex6_v      | unisim  |      | 9.2.2499.sp1.36.4586  (Windows) | -vendor xilinx
+bscane2            | bscane2_v            | unisim  |      | 9.2.2499.sp1.36.4586  (Windows) | -vendor xilinx
+-------------------------------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------------------------------
+VHDL Package                              | Library | Info | Compiler Version                | Compilation Options
+-------------------------------------------------------------------------------------------------------------------
+standard                                  | std     |      |                                 | <unavailable>
+TEXTIO                                    | std     |      | 9.2.2499.sp1.36.4586  (Windows) |  -2008
+std_logic_1164                            | ieee    |      | 9.2.2499.sp1.36.4586  (Windows) |  -2008
+STD_LOGIC_TEXTIO                          | ieee    |      | 9.2.2499.sp1.36.4586  (Windows) | 
+std_logic_arith                           | ieee    |      | 9.2.2499.sp1.36.4586  (Windows) | 
+NUMERIC_STD                               | ieee    |      | 9.2.2499.sp1.36.4586  (Windows) |  -2008
+Image_Pkg                                 | vipram  |      | 9.2.2499.sp1.36.4586  (Windows) | -dbg
+VCOMPONENTS                               | unisim  |      | 9.2.2499.sp1.36.4586  (Windows) | -vendor xilinx
+STD_LOGIC_UNSIGNED                        | ieee    |      | 9.2.2499.sp1.36.4586  (Windows) | 
+VITAL_Timing                              | ieee    |      | 9.2.2499.sp1.36.4586  (Windows) | 
+STD_LOGIC_SIGNED                          | ieee    |      | 9.2.2499.sp1.36.4586  (Windows) | 
+jtag_loader_pkg                           | vipram  |      | 9.2.2499.sp1.36.4586  (Windows) | -dbg
+VITAL_Primitives                          | ieee    |      | 9.2.2499.sp1.36.4586  (Windows) | 
+VPKG                                      | unisim  |      | 9.2.2499.sp1.36.4586  (Windows) | -vendor xilinx
+-------------------------------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------------------------------
+Library                                   | Comment
+-------------------------------------------------------------------------------------------------------------------
+ieee                                      | Standard IEEE packages library
+std                                       | Standard VHDL library
+unisim                                    | XILINX ISE 14.4, UNISIM VHDL LIBRARY
+vipram                                    | None
+-------------------------------------------------------------------------------------------------------------------

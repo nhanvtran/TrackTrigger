@@ -1,0 +1,74 @@
+[Project]
+Current Flow=Generic
+VCS=0
+version=3
+Current Config=compile
+
+[Configurations]
+compile=vipram
+
+[Library]
+VIPRAM=.\VIPRAM\VIPRAM.lib
+
+[Settings]
+AccessRead=0
+AccessReadWrite=0
+AccessACCB=0
+AccessACCR=0
+AccessReadWriteSLP=0
+AccessReadTopLevel=1
+DisableC=1
+ENABLE_ADV_DATAFLOW=0
+FLOW_TYPE=HDL
+LANGUAGE=VHDL
+REFRESH_FLOW=1
+FLOWTOOLS=NONE
+FAMILY=
+fileopenfolder=C:\Users\jamieson\Documents\Aldec\Mezzanine\VIPRAM\src
+
+[LocalVerilogSets]
+EnableSLP=1
+EnableDebug=0
+
+[LocalVhdlSets]
+CompileWithDebug=1
+
+[$LibMap$]
+VIPRAM=.
+Active_lib=
+
+[HierarchyViewer]
+HierarchyInformation=kcpsm6|low_level_definition|0 testbench|testbench_arch|0 top|top_arch|0 
+ShowHide=ShowTopLevel
+Selected=
+
+[Groups]
+TestBench=1
+PicoBlaze=1
+
+[Files]
+/top.vhd=-1
+/MezzClock.vhd=-1
+/vipram_rom.vhd=-1
+/chipscope_ila.vhd=-1
+/chipscope_icon.vhd=-1
+TestBench/LTC3447.vhd=-1
+TestBench/image_pb.vhd=-1
+TestBench/testbench.vhd=-1
+PicoBlaze/kcpsm6.vhd=-1
+PicoBlaze/mezzanine.vhd=-1
+PicoBlaze/power.vhd=-1
+
+[Files.Data]
+.\src\top.vhd=VHDL Source Code
+.\src\MezzClock.vhd=VHDL Source Code
+.\src\vipram_rom.vhd=VHDL Source Code
+.\src\chipscope_ila.vhd=VHDL Source Code
+.\src\chipscope_icon.vhd=VHDL Source Code
+.\src\TestBench\LTC3447.vhd=VHDL Source Code
+.\src\TestBench\image_pb.vhd=VHDL Source Code
+.\src\TestBench\testbench.vhd=VHDL Source Code
+.\src\PicoBlaze\kcpsm6.vhd=VHDL Source Code
+.\src\PicoBlaze\mezzanine.vhd=VHDL Source Code
+.\src\PicoBlaze\power.vhd=VHDL Source Code
+
