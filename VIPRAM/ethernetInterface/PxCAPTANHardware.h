@@ -14,17 +14,22 @@ class PxCAPTANHardware : public PxNetworkDevice
 {
 
 public:
-    PxCAPTANHardware (std::string captanIPAddress, std::string captanIPPort, std::string captanReadSocket, std::string captanWriteSocket);
+    PxCAPTANHardware (std::string captanIPAddress, unsigned int captanIPPort, unsigned int captanReadSocket, unsigned int captanWriteSocket);
     virtual ~PxCAPTANHardware(void);
     int init(void);
+    int configure(void);
+    int start(void);
+    int stop(void);
+    int globalReset(void);
     int read (UInt64 address,       std::string&         buffer);
     int read (UInt64 address,       std::vector<UInt64>& buffer);
     int write(UInt64 address, const std::string&         buffer);
     int write(UInt64 address, const std::vector<UInt64>& buffer);
+    int write(UInt64 address, const char* value, int length);
     int setupCaptanReadSocket(void);
     
 private:
-    typedef struct destinationComputerInfo
+    struct destinationComputerInfo
     {
     	std::string ipAddress;
     	std::string macAddress;
@@ -40,8 +45,8 @@ private:
     
     const std::string captanBaseIP_;
           std::string captanIPAddress_;
-          std::string captanIPPort_;
 
+    int captanIPPort_;
     int captanReadSocketDescriptor_;
     int captanWriteSocketDescriptor_;
     

@@ -7,9 +7,12 @@
 #include <sys/socket.h>
 #include <netdb.h>
 #include <ifaddrs.h>
-#include <net/if.h>
-#include <net/if_dl.h>
 #include <sys/ioctl.h>
+#if defined(SIOCGIFHWADDR)
+#include <net/if.h>
+#else
+#include <net/if_dl.h>
+#endif
 #include <cstdlib>
 #include <cstring>
 #include <cstdio>
@@ -19,12 +22,12 @@ using namespace std;
 using namespace PxSuite;
 
 //========================================================================================================================
-PxNetworkDevice::PxNetworkDevice(string IPAddress, string IPPort) :
+PxNetworkDevice::PxNetworkDevice(string IPAddress, unsigned int IPPort) :
         communicationInterface_(NULL)
 {
     //network stuff
     deviceAddress_.sin_family = AF_INET;// use IPv4 host byte order
-    deviceAddress_.sin_port   = htons(atoi(IPPort.c_str()));// short, network byte order
+    deviceAddress_.sin_port   = htons(IPPort);// short, network byte order
 
     if(inet_aton(IPAddress.c_str(), &deviceAddress_.sin_addr) == 0)
     {
@@ -101,6 +104,14 @@ int PxNetworkDevice::initSocket(string socketPort)
 }
 
 //========================================================================================================================
+int PxNetworkDevice::initSocket(unsigned int socketPort)
+{
+	stringstream socket;
+	socket << socketPort;
+	return initSocket(socket.str());
+}
+
+//========================================================================================================================
 int PxNetworkDevice::send(int socketDescriptor, const std::string& buffer)
 {
     if(sendto(socketDescriptor,buffer.c_str(),buffer.size(),0,(struct sockaddr *)&(deviceAddress_), sizeof(deviceAddress_)) < (int)(buffer.size()))
@@ -114,17 +125,34 @@ int PxNetworkDevice::send(int socketDescriptor, const std::string& buffer)
 //========================================================================================================================
 int PxNetworkDevice::receive(int socketDescriptor, std::string& buffer)
 {
-    struct sockaddr_in tmpAddress;
-    socklen_t addressLength = sizeof(tmpAddress);
-    int nOfBytes;
-    if ((nOfBytes=recvfrom(socketDescriptor, readBuffer_, maxSocketSize, 0, (struct sockaddr *)&tmpAddress, &addressLength)) == -1)
+    struct timeval tv;
+    tv.tv_sec = 0;
+    tv.tv_usec = 1000000; //set timeout period for select()
+    fd_set fileDescriptor;  //setup set for select()
+    FD_ZERO(&fileDescriptor);
+    FD_SET(socketDescriptor,&fileDescriptor);
+    select(socketDescriptor+1, &fileDescriptor, 0, 0, &tv);
+
+    if(FD_ISSET(socketDescriptor,&fileDescriptor))
     {
-        cout << __PRETTY_FUNCTION__ << __LINE__ << "Error reading buffer" << endl;
+    	string bufferS;
+        struct sockaddr_in tmpAddress;
+        socklen_t addressLength = sizeof(tmpAddress);
+        int nOfBytes;
+        if ((nOfBytes=recvfrom(socketDescriptor, readBuffer_, maxSocketSize, 0, (struct sockaddr *)&tmpAddress, &addressLength)) == -1)
+        {
+            cout << __PRETTY_FUNCTION__ << __LINE__ << "Error reading buffer" << endl;
+            return -1;
+        }
+        buffer.resize(nOfBytes);
+        for(int i=0; i<nOfBytes; i++)
+            buffer[i] = readBuffer_[i];
+    }
+    else
+    {
+        cout << __PRETTY_FUNCTION__ << __LINE__ << "]\tNetwork device unresponsive. Read request timed out." << endl;
         return -1;
     }
-    buffer.resize(nOfBytes);
-    for(int i=0; i<nOfBytes; i++)
-        buffer[i] = readBuffer_[i];
 
 	return 0;
 }
@@ -139,6 +167,13 @@ int PxNetworkDevice::ping(int socketDescriptor)
         return -1;
     }
 
+	string bufferS;
+    if(receive(socketDescriptor,bufferS) == -1)
+    {
+       cout << __PRETTY_FUNCTION__ << __LINE__ <<"]\tFailed to ping device"<< endl;
+       return -1;
+    }
+/*
     struct timeval tv;
     tv.tv_sec = 0;
     tv.tv_usec = 100000; //set timeout period for select()
@@ -149,7 +184,7 @@ int PxNetworkDevice::ping(int socketDescriptor)
 
     if(FD_ISSET(socketDescriptor,&fileDescriptor))
     {
-		string bufferS;
+    	string bufferS;
         if(receive(socketDescriptor,bufferS) == -1)
         {
            cout << __PRETTY_FUNCTION__ << __LINE__ <<"]\tFailed to ping device"<< endl;
@@ -161,7 +196,7 @@ int PxNetworkDevice::ping(int socketDescriptor)
         cout << __PRETTY_FUNCTION__ << __LINE__ << "]\tNetwork device unresponsive. Ping request timed out." << endl;
         return -1;
     }
-
+*/
     return 0;
 }
 
@@ -276,131 +311,52 @@ int PxNetworkDevice::getInterface(std::string ipAddress)
 }
 
 //========================================================================================================================
-//std::string PxNetworkDevice::getMacAddress(std::string interfaceName)
-//{
-//
-//    struct ifreq ifr;
-//    string mac(6,'0');
-//    int sock, j, k;
-//
-//    sock=socket(PF_INET, SOCK_STREAM, 0);
-//
-//    if (-1==sock)
-//    {
-//        perror("socket() ");
-//        return "";
-//    }
-//
-//    strncpy(ifr.ifr_name,interfaceName.c_str(),sizeof(ifr.ifr_name)-1);
-//    ifr.ifr_name[sizeof(ifr.ifr_name)-1]='\0';
-//
-//    if (-1==ioctl(sock, SIOCGIFHWADDR, &ifr))
-//    {
-//        perror("ioctl(SIOCGIFHWADDR) ");
-//        return "";
-//    }
-//    for (j=0, k=0; j<6; j++)
-//      mac[j] = ifr.ifr_hwaddr.sa_data[j];
-//
-//    //3c:07:54:49:4f:8f
-//    mac[0] = 0x3c;
-//    mac[1] = 0x07;
-//    mac[2] = 0x54;
-//    mac[3] = 0x49;
-//    mac[4] = 0x4f;
-//    mac[5] = 0x8f;
-//    
-//    return mac;
-////    return mac;
-//}
-
-//#define HAVE_SIOCGIFHWADDR
-#define HAVE_GETIFADDRS
-//#if defined(HAVE_SIOCGIFHWADDR)
-#if defined(SIOCGIFHWADDR)
 std::string PxNetworkDevice::getMacAddress(std::string interfaceName)
 {
-    
+
+    string macAddress(6,'0');
+#if defined(SIOCGIFHWADDR)
     struct ifreq ifr;
-    string mac(6,'0');
-    int sock, j, k;
-    
+    int sock;
+
     sock=socket(PF_INET, SOCK_STREAM, 0);
-    
+
     if (-1==sock)
-        {
+    {
         perror("socket() ");
         return "";
-        }
-    
+    }
+
     strncpy(ifr.ifr_name,interfaceName.c_str(),sizeof(ifr.ifr_name)-1);
     ifr.ifr_name[sizeof(ifr.ifr_name)-1]='\0';
-    
-//    if (-1==ioctl(sock, SIOCGIFHWADDR, &ifr))
-//        {
-//        perror("ioctl(SIOCGIFHWADDR) ");
-//        return "";
-//        }
-//    for (j=0, k=0; j<6; j++)
-//        mac[j] = ifr.ifr_hwaddr.sa_data[j];
-    
-        //3c:07:54:49:4f:8f
-    mac[0] = 0x3c;
-    mac[1] = 0x07;
-    mac[2] = 0x54;
-    mac[3] = 0x49;
-    mac[4] = 0x4f;
-    mac[5] = 0x8f;
-    
-    return mac;
-        //    return mac;
-}
-    //#elif defined(HAVE_GETIFADDRS)
+
+    if (-1==ioctl(sock, SIOCGIFHWADDR, &ifr))
+    {
+        perror("ioctl(SIOCGIFHWADDR) ");
+        return "";
+    }
+    for (int j=0; j<6; j++)
+      macAddress[j] = ifr.ifr_hwaddr.sa_data[j];
 #else
-std::string PxNetworkDevice::getMacAddress(std::string interfaceName){
-//bool get_mac_address(char* mac_addr, const char* if_name = "en0")
-//{
-    char mac_addr[6];
-    
+    char mac[6];
     ifaddrs* iflist;
     bool found = false;
     if (getifaddrs(&iflist) == 0) {
         for (ifaddrs* cur = iflist; cur; cur = cur->ifa_next) {
             if ((cur->ifa_addr->sa_family == AF_LINK) &&
-                (strcmp(cur->ifa_name, interfaceName.c_str()) == 0) && cur->ifa_addr) {
+                    (strcmp(cur->ifa_name, interfaceName.c_str()) == 0) &&
+                    cur->ifa_addr) {
                 sockaddr_dl* sdl = (sockaddr_dl*)cur->ifa_addr;
-                memcpy(mac_addr, LLADDR(sdl), sdl->sdl_alen);
+                memcpy(mac, LLADDR(sdl), sdl->sdl_alen);
                 found = true;
                 break;
             }
         }
-        
-            freeifaddrs(iflist);
+
+        freeifaddrs(iflist);
     }
-    cout << "mac_addr: |" << mac_addr << "|" << endl;
-    
-    string mac(6,'0');
     for (int j=0; j<6; j++)
-        mac[j] = mac_addr[j];
-/*
-    mac_addr[0] = 0x3c;
-    mac_addr[1] = 0x07;
-    mac_addr[2] = 0x54;
-    mac_addr[3] = 0x49;
-    mac_addr[4] = 0x4f;
-    mac_addr[5] = 0x8f;
-*/    
-//    mac[0] = 0x3c;
-//    mac[1] = 0x07;
-//    mac[2] = 0x54;
-//    mac[3] = 0x49;
-//    mac[4] = 0x4f;
-//    mac[5] = 0x8f;
-    
-    cout << "mac: |" << mac << "|" << endl;
-    return mac;
-}
+      macAddress[j] = mac[j];
 #endif
-
-
-
+    return macAddress;
+}

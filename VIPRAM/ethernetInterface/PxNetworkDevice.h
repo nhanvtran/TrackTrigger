@@ -13,10 +13,11 @@ namespace PxSuite
 class PxNetworkDevice
 {
 public:
-    PxNetworkDevice(std::string IPAddress, std::string port);
+    PxNetworkDevice(std::string IPAddress, unsigned int port);
     ~PxNetworkDevice();
 
     int         initSocket      (std::string socketPort="");
+    int         initSocket      (unsigned int socketPort);
     //int closeSocket(std::string socketPort="");
     int         ping            (int socketDescriptor);
     int         send            (int socketDescriptor, const std::string& msg);
