@@ -1,0 +1,11 @@
+.\src\top.vhd
+.\src\MezzClock.vhd
+.\src\vipram_rom.vhd
+.\src\chipscope_ila.vhd
+.\src\chipscope_icon.vhd
+.\src\TestBench\LTC3447.vhd
+.\src\TestBench\image_pb.vhd
+.\src\TestBench\testbench.vhd
+.\src\PicoBlaze\kcpsm6.vhd
+.\src\PicoBlaze\mezzanine.vhd
+.\src\PicoBlaze\power.vhd

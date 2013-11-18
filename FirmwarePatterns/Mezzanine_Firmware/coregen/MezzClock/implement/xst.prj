@@ -1,0 +1,2 @@
+vhdl work ../../MezzClock.vhd
+vhdl work ../example_design/MezzClock_exdes.vhd

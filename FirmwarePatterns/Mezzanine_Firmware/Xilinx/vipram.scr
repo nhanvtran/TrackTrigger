@@ -1,0 +1,10 @@
+run
+-ifn vipram.prj
+-uc vipram.xcf
+-ofn vipram.ngc
+-p TARGET
+-ifmt mixed
+-ofmt NGC
+-top top
+-opt_level 1
+-opt_mode SPEED
