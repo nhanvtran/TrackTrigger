@@ -1,1 +1,0 @@
--w -s "c:\Users\jamieson\Documents\Aldec\Mezzanine\library.cfg"  -j "c:\Users\jamieson\Documents\Aldec\Mezzanine\VIPRAM\projlib.cfg"  -d "c:\Users\jamieson\Documents\Aldec\Mezzanine\VIPRAM\compile"   -work vipram  -dbg -e 100 -2002 "c:\Users\jamieson\Documents\Aldec\Mezzanine\VIPRAM\src\top.vhd"
