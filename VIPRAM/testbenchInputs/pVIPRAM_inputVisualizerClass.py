@@ -125,7 +125,32 @@ class inputVisualizer:
             for j in range(32): oline += str(l_DataOut[i][j])
             oline += " "
             oline += str(l_CompareNow[i]) + " "
-            print oline
+            #print oline
+            
+            olinehex = "";
+            olinehex += '{0:01x}'.format(l_InputD_bit0[i]) + " "
+            olinehex += '{0:04x}'.format(l_InputD[i]) + " "            
+            olinehex += '{0:01x}'.format(l_InputC_bit0[i]) + " "
+            olinehex += '{0:04x}'.format(l_InputC[i]) + " "
+            olinehex += '{0:01x}'.format(l_InputB_bit0[i]) + " "
+            olinehex += '{0:04x}'.format(l_InputB[i]) + " "
+            olinehex += '{0:01x}'.format(l_InputA_bit0[i]) + " "
+            olinehex += '{0:04x}'.format(l_InputA[i]) + " "
+            olinehex += '{0:03x}'.format(l_ColAdr[i]) + " "
+            olinehex += '{0:03x}'.format(l_RowAdr[i]) + " "
+            olinehex += '{0:01x}'.format(l_EventReset[i]) + " "
+            olinehex += '{0:01x}'.format(l_LatchData[i]) + " "
+            olinehex += '{0:01x}'.format(l_Primary[i]) + " "
+            olinehex += '{0:01x}'.format(l_RunMode[i]) + " "
+            olinehex += '{0:01x}'.format(l_Miss0[i]) + " "  
+            olinehex += '{0:01x}'.format(l_Miss1[i]) + " "  
+            olinehex += '{0:01x}'.format(l_Miss2[i]) + " "  
+            olinehex += '{0:01x}'.format(l_RequireLayerA[i]) + " "  
+            olinehex += '{0:01x}'.format(l_CheckData[i]) + " "
+            for j in range(32): olinehex += '{0:01x}'.format(l_DataOut[i][j])
+            olinehex += " "
+            olinehex += '{0:01x}'.format(l_CompareNow[i]) + " "
+            print "--- olinehex = ", olinehex
 
     ############################
     def initializeToNegOne(self,h):

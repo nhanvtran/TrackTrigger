@@ -31,9 +31,6 @@ else:
 	print "Generating New Test"	
 
 os.system("mkdir "+"Generated_Tests/"+testName);
-inputPattern = inputBuilder("Generated_Tests/"+testName+"/"+testName+".root");    
-
-
 
 #----------------------------------------------------------------------------------------
 #----------------------------------------------------------------------------------------
@@ -52,16 +49,11 @@ inputPattern = inputBuilder("Generated_Tests/"+testName+"/"+testName+".root");
 #def readOutMode(self, logic = [-99,-99,-99,-99]):
 
 
-
+inputPattern = inputBuilder("Generated_Tests/"+testName+"/"+testName+".root");    
 inputPattern.initializeLoadPhase();
 inputPattern.loadUniformPatterns(9, 9, 27); 
 inputPattern.initializeRunPhase( [1,0,0,0] ); 
 inputPattern.checkPattern( [27,27,27,27] ,9);
-
-
-#----------------------------------------------------------------------------------------
-#----------------------------------------------------------------------------------------
-#-----------------------------------------------------------------------------------------    
 inputPattern.close();
     
 visuA = inputVisualizer( inputPattern.getFilename() );
@@ -72,6 +64,9 @@ visuA.writeToText("Generated_Tests/"+testName+"/"+testName+".txt"); # write outp
 shutil.copyfile("Generated_Tests/"+testName+"/"+testName+".txt" ,"Generated_Tests/"+ testName + "/inputPattern.txt" ) 
 shutil.copyfile("TestGenerator_Reformatter.py","Generated_Tests/"+ testName+"/"+testName + ".py" ) 
 
+#----------------------------------------------------------------------------------------
+#----------------------------------------------------------------------------------------
+#----------------------------------------------------------------------------------------
 
 
 ### Reformat Input File and Generate vipram_rom.vhd file 
@@ -130,7 +125,7 @@ Replace_at_mark("temporary_VHDL_file.vhd","//ReplaceMe", replaceExp)
 shutil.copy("temporary_file_pattern.txt" ,"Generated_Tests/"+ testName +"/"+testName+"_reformattedText.txt") 
 shutil.copy("temporary_VHDL_file.vhd" , "Generated_Tests/"+testName+"/vipram_rom.vhd")
 shutil.copy("temporary_VHDL_file.vhd" , "Generated_Tests/"+testName+"/" + testName + "_vipram_rom.vhd")
-shutil.copy("temporary_VHDL_file.vhd" , "Mezzanine_Firmware_2013-05-14/src/vipram_rom.vhd")
+#shutil.copy("temporary_VHDL_file.vhd" , "Mezzanine_Firmware_2013-05-14/src/vipram_rom.vhd")
 
 
 print "Number_of_lines in Reformatted Pattern" , file_len("temporary_file_pattern.txt")
