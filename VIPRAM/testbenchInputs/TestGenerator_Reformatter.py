@@ -54,6 +54,12 @@ inputPattern.initializeLoadPhase();
 inputPattern.loadUniformPatterns(9, 9, 27); 
 inputPattern.initializeRunPhase( [1,0,0,0] ); 
 inputPattern.checkPattern( [27,27,27,27] ,9);
+inputPattern.checkPattern( [00,00,00,00] ,9);
+inputPattern.checkPattern( [00,00,00,00] ,9);
+inputPattern.checkPattern( [00,00,00,00] ,9);
+inputPattern.checkPattern( [00,00,00,00] ,9);
+inputPattern.checkPattern( [00,00,00,00] ,9);
+inputPattern.initializeRunPhase( [1,0,0,0] );
 inputPattern.close();
     
 visuA = inputVisualizer( inputPattern.getFilename() );
