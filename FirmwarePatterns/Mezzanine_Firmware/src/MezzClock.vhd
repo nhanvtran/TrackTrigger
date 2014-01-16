@@ -141,26 +141,26 @@ begin
     COMPENSATION         => "ZHOLD",
     STARTUP_WAIT         => FALSE,
     DIVCLK_DIVIDE        => 1,
-    CLKFBOUT_MULT_F      => 5.000,
+    CLKFBOUT_MULT_F      => 5.000,  -- multiplier, leave this at 5.000 *FLOAT*
     CLKFBOUT_PHASE       => 0.000,
     CLKFBOUT_USE_FINE_PS => FALSE,
-    CLKOUT0_DIVIDE_F     => 50.000,
+    CLKOUT0_DIVIDE_F     => 10.000, -- clock divider (50.000 = 20MHz, 25=40MHz) *FLOAT*
     CLKOUT0_PHASE        => 0.000,
     CLKOUT0_DUTY_CYCLE   => 0.500,
     CLKOUT0_USE_FINE_PS  => FALSE,
-    CLKOUT1_DIVIDE       => 50,
+    CLKOUT1_DIVIDE       => 25,     -- clock_b divider *INT*
     CLKOUT1_PHASE        => 90.000,
     CLKOUT1_DUTY_CYCLE   => 0.500,
     CLKOUT1_USE_FINE_PS  => FALSE,
-    CLKOUT2_DIVIDE       => 100,
+    CLKOUT2_DIVIDE       => 100,    -- slow_clk, divider, keep at 100 (100MHz) *INT*
     CLKOUT2_PHASE        => 0.000,
     CLKOUT2_DUTY_CYCLE   => 0.500,
     CLKOUT2_USE_FINE_PS  => FALSE,
-    CLKOUT3_DIVIDE       => 5,
+    CLKOUT3_DIVIDE       => 5,      -- chipscope clock divider, keep at 5 (200MHz) *INT*
     CLKOUT3_PHASE        => 0.000,
     CLKOUT3_DUTY_CYCLE   => 0.500,
     CLKOUT3_USE_FINE_PS  => FALSE,
-    CLKIN1_PERIOD        => 5.000,
+    CLKIN1_PERIOD        => 5.000,  -- 200MHz clock in
     REF_JITTER1          => 0.010)
   port map
     -- Output clocks
@@ -210,13 +210,10 @@ begin
    (O => clkfbout_buf,
     I => clkfbout);
 
-
   clkout1_buf : BUFG
   port map
    (O   => CLK_OUT1,
     I   => clkout0);
-
-
 
   clkout2_buf : BUFG
   port map
