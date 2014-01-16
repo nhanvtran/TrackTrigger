@@ -160,10 +160,12 @@ class inputBuilder:
         self.LatchData[0] = 0;
         self.cycleCtr += 1;
         self.tree.Fill();
+        self.tree.Fill();
 
         self.counter[0] = self.cycleCtr;            
         self.LatchData[0] = 1;
         self.cycleCtr += 1;            
+        self.tree.Fill();
         self.tree.Fill();
 
         self.counter[0] = self.cycleCtr;            
@@ -193,10 +195,12 @@ class inputBuilder:
         self.LatchData[0] = 0;
         self.cycleCtr += 1;
         self.tree.Fill();
+        self.tree.Fill();
         
         self.counter[0] = self.cycleCtr;            
         self.LatchData[0] = 1;
         self.cycleCtr += 1;            
+        self.tree.Fill();
         self.tree.Fill();
 
         self.counter[0] = self.cycleCtr;            
@@ -233,10 +237,12 @@ class inputBuilder:
         self.LatchData[0] = 0;
         self.cycleCtr += 1;
         self.tree.Fill();
+        self.tree.Fill();
         
         self.counter[0] = self.cycleCtr;            
         self.LatchData[0] = 1;
         self.cycleCtr += 1;            
+        self.tree.Fill();
         self.tree.Fill();
 
         self.counter[0] = self.cycleCtr;            
@@ -263,10 +269,12 @@ class inputBuilder:
         self.LatchData[0] = 0;
         self.cycleCtr += 1;
         self.tree.Fill();
+        self.tree.Fill();
         
         self.counter[0] = self.cycleCtr;            
         self.LatchData[0] = 1;
         self.cycleCtr += 1;            
+        self.tree.Fill();
         self.tree.Fill();
 
         self.counter[0] = self.cycleCtr;            
@@ -320,7 +328,7 @@ class inputBuilder:
         self.ColAdr[0] = 0; #cols 0-31
         self.RunMode[0] = 1;
         self.LatchData[0] = 0;
-        self.Primary[0] = 1;
+        self.Primary[0] = 0;
         self.EventReset[0] = 1;
         for i in range(128):
             for j in range(32):
