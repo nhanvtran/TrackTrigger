@@ -48,50 +48,92 @@ os.system("mkdir "+"Generated_Tests/"+testName);
 #def checkPattern(self, pattern, specificRow = 0): run mode, look for a single pattern [,,,]
 #def readOutMode(self, logic = [-99,-99,-99,-99]):
 
-#### TEST 3
+#### TEST 3 100 MHz
 #inputPattern = inputBuilder("Generated_Tests/"+testName+"/"+testName+".root");    
 #inputPattern.initializeLoadPhase();
-#inputPattern.loadUniformPatterns(9, 9, 27); 
-#inputPattern.loadUniformPatterns(9, 11, 37); 
+#inputPattern.loadUniformPatterns(9, 9, 27, 4); 
+#inputPattern.loadUniformPatterns(9, 11, 37, 4); 
+#inputPattern.loadUniformPatterns(9, 13, 47, 4); 
 #inputPattern.initializeRunPhase( [1,0,0,0] ); 
+#inputPattern.checkPattern( [00,00,00,00] ,9);
+#inputPattern.checkPattern( [00,00,00,00] ,9);
+#inputPattern.checkPattern( [00,00,00,00] ,9);
+#inputPattern.checkPattern( [00,00,00,00] ,9);
 #inputPattern.checkPattern( [27,27,27,27] ,9);
 #inputPattern.checkPattern( [37,37,37,37] ,9);
 #inputPattern.checkPattern( [00,00,00,00] ,9);
+#inputPattern.checkPattern( [00,00,00,00] ,9);
+#inputPattern.checkPattern( [47,47,47,47] ,9);
+#for i in range(20):
+#    inputPattern.checkPattern( [00,00,00,00] ,9);
+#inputPattern.initializeRunPhase( [1,0,0,0] );
+#inputPattern.checkPattern( [00,00,00,00] ,9);
+#inputPattern.checkPattern( [00,00,00,00] ,9);
+#inputPattern.checkPattern( [00,00,00,00] ,9);
+#inputPattern.checkPattern( [00,00,00,00] ,9);
+#inputPattern.checkPattern( [27,27,27,27] ,9);
+#inputPattern.checkPattern( [37,37,37,37] ,9);
+#inputPattern.checkPattern( [00,00,00,00] ,9);
+#inputPattern.checkPattern( [00,00,00,00] ,9);
+#inputPattern.checkPattern( [47,47,47,47] ,9);
+#for i in range(20):
+#    inputPattern.checkPattern( [00,00,00,00] ,9);
+#inputPattern.close();
+
+# TEST 3 logic
+
+inputPattern = inputBuilder("Generated_Tests/"+testName+"/"+testName+".root");    
+inputPattern.initializeLoadPhase();
+inputPattern.loadUniformPatterns(9, 9, 27, 1); 
+inputPattern.loadUniformPatterns(9, 11, 37, 1); 
+inputPattern.loadUniformPatterns(9, 13, 47, 1); 
+
+inputPattern.initializeRunPhase( [1,0,0,0] ); 
+inputPattern.checkPattern( [27,27,27,27] ,9);
+inputPattern.checkPattern( [37,37,37,37] ,9);
+inputPattern.checkPattern( [47,47,47,47] ,9);
+for i in range(4):
+    inputPattern.checkPattern( [00,00,00,00] ,9);
+
+inputPattern.initializeRunPhase( [0,1,0,0] ); 
+inputPattern.checkPattern( [27,27,27,27] ,9);
+inputPattern.checkPattern( [00,37,37,37] ,9);
+inputPattern.checkPattern( [00,00,47,47] ,9);
+for i in range(4):
+    inputPattern.checkPattern( [00,00,00,00] ,9);
+
+inputPattern.initializeRunPhase( [0,0,1,0] ); 
+inputPattern.checkPattern( [27,27,27,27] ,9);
+inputPattern.checkPattern( [00,37,37,37] ,9);
+inputPattern.checkPattern( [00,00,47,47] ,9);
+inputPattern.checkPattern( [00,00,47,00] ,9);
+for i in range(4):
+    inputPattern.checkPattern( [00,00,00,00] ,9);
+inputPattern.close();
+  
+#### TEST 4
+#inputPattern = inputBuilder("Generated_Tests/"+testName+"/"+testName+".root");    
+#inputPattern.initializeLoadPhase();
+#inputPattern.loadSinglePattern(9, 5, [5,10,15,20]); 
+#inputPattern.loadSinglePattern(9, 10, [25,30,35,40]); 
+#inputPattern.loadSinglePattern(9, 15, [45,50,55,60]); 
+#inputPattern.loadSinglePattern(9, 20, [65,70,75,80]); 
+#inputPattern.loadSinglePattern(9, 25, [85,90,95,100]); 
+#inputPattern.initializeRunPhase( [1,0,0,0] ); 
+#inputPattern.checkPattern( [5,10,15,20] ,9);
+#inputPattern.checkPattern( [25,30,35,40] ,9);
+#inputPattern.checkPattern( [45,50,55,60] ,9);
 #inputPattern.checkPattern( [00,00,00,00] ,9);
 #inputPattern.checkPattern( [00,00,00,00] ,9);
 #inputPattern.checkPattern( [00,00,00,00] ,9);
 #inputPattern.initializeRunPhase( [1,0,0,0] );
-#inputPattern.checkPattern( [27,27,27,27] ,9);
-#inputPattern.checkPattern( [37,37,37,37] ,9);
+#inputPattern.checkPattern( [65,70,75,80] ,9);
+#inputPattern.checkPattern( [85,90,95,100] ,9);
 #inputPattern.checkPattern( [00,00,00,00] ,9);
 #inputPattern.checkPattern( [00,00,00,00] ,9);
 #inputPattern.checkPattern( [00,00,00,00] ,9);
 #inputPattern.checkPattern( [00,00,00,00] ,9);
-#inputPattern.close();
-  
-#### TEST 4
-inputPattern = inputBuilder("Generated_Tests/"+testName+"/"+testName+".root");    
-inputPattern.initializeLoadPhase();
-inputPattern.loadSinglePattern(9, 5, [5,10,15,20]); 
-inputPattern.loadSinglePattern(9, 10, [25,30,35,40]); 
-inputPattern.loadSinglePattern(9, 15, [45,50,55,60]); 
-inputPattern.loadSinglePattern(9, 20, [65,70,75,80]); 
-inputPattern.loadSinglePattern(9, 25, [85,90,95,100]); 
-inputPattern.initializeRunPhase( [1,0,0,0] ); 
-inputPattern.checkPattern( [5,10,15,20] ,9);
-inputPattern.checkPattern( [25,30,35,40] ,9);
-inputPattern.checkPattern( [45,50,55,60] ,9);
-inputPattern.checkPattern( [00,00,00,00] ,9);
-inputPattern.checkPattern( [00,00,00,00] ,9);
-inputPattern.checkPattern( [00,00,00,00] ,9);
-inputPattern.initializeRunPhase( [1,0,0,0] );
-inputPattern.checkPattern( [65,70,75,80] ,9);
-inputPattern.checkPattern( [85,90,95,100] ,9);
-inputPattern.checkPattern( [00,00,00,00] ,9);
-inputPattern.checkPattern( [00,00,00,00] ,9);
-inputPattern.checkPattern( [00,00,00,00] ,9);
-inputPattern.checkPattern( [00,00,00,00] ,9);
-inputPattern.close();    
+#inputPattern.close();    
     
 visuA = inputVisualizer( inputPattern.getFilename() );
 visuA.textVisualizer();

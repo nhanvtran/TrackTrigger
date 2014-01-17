@@ -137,7 +137,7 @@ class inputBuilder:
         
     # -------------------
     # loadUniformPatterns
-    def loadUniformPatterns(self, row, col, iVal, disableInputs = 1):
+    def loadUniformPatterns(self, row, col, iVal, multiplicativeFactor = 1, disableInputs = 1):
         # primary
         
         self.counter[0] = self.cycleCtr;
@@ -159,19 +159,29 @@ class inputBuilder:
         
         self.LatchData[0] = 0;
         self.cycleCtr += 1;
-        self.tree.Fill();
-        self.tree.Fill();
+
+        ctrMF = 0;
+        while ctrMF < multiplicativeFactor:
+            self.tree.Fill();
+            self.tree.Fill();
+            ctrMF += 1; 
 
         self.counter[0] = self.cycleCtr;            
         self.LatchData[0] = 1;
         self.cycleCtr += 1;            
-        self.tree.Fill();
-        self.tree.Fill();
+        ctrMF = 0;
+        while ctrMF < multiplicativeFactor:
+            self.tree.Fill();
+            self.tree.Fill();
+            ctrMF += 1; 
 
         self.counter[0] = self.cycleCtr;            
         self.LatchData[0] = 0;
         self.cycleCtr += 1;            
-        self.tree.Fill();
+        ctrMF = 0;
+        while ctrMF < multiplicativeFactor:
+            self.tree.Fill();
+            ctrMF += 1; 
 
         # secondary
         # set ternary bits
@@ -194,25 +204,34 @@ class inputBuilder:
         
         self.LatchData[0] = 0;
         self.cycleCtr += 1;
-        self.tree.Fill();
-        self.tree.Fill();
+        ctrMF = 0;
+        while ctrMF < multiplicativeFactor:
+            self.tree.Fill();
+            self.tree.Fill();
+            ctrMF += 1; 
         
         self.counter[0] = self.cycleCtr;            
         self.LatchData[0] = 1;
         self.cycleCtr += 1;            
-        self.tree.Fill();
-        self.tree.Fill();
+        ctrMF = 0;
+        while ctrMF < multiplicativeFactor:
+            self.tree.Fill();
+            self.tree.Fill();
+            ctrMF += 1; 
 
         self.counter[0] = self.cycleCtr;            
         self.LatchData[0] = 0;
         self.cycleCtr += 1;            
-        self.tree.Fill();
+        ctrMF = 0;
+        while ctrMF < multiplicativeFactor:
+            self.tree.Fill();
+            ctrMF += 1; 
 
         #print self.DataOut
 
     # -------------------
     # loadSinglePattern
-    def loadSinglePattern(self, row, col, iVal, disableInputs = 1):
+    def loadSinglePattern(self, row, col, iVal, multiplicativeFactor = 1, disableInputs = 1):
         #print "loading random patterns..."
         
         # primary
@@ -236,19 +255,28 @@ class inputBuilder:
         
         self.LatchData[0] = 0;
         self.cycleCtr += 1;
-        self.tree.Fill();
-        self.tree.Fill();
+        ctrMF = 0;
+        while ctrMF < multiplicativeFactor:
+            self.tree.Fill();
+            self.tree.Fill();
+            ctrMF += 1; 
         
         self.counter[0] = self.cycleCtr;            
         self.LatchData[0] = 1;
         self.cycleCtr += 1;            
-        self.tree.Fill();
-        self.tree.Fill();
+        ctrMF = 0;
+        while ctrMF < multiplicativeFactor:
+            self.tree.Fill();
+            self.tree.Fill();
+            ctrMF += 1; 
 
         self.counter[0] = self.cycleCtr;            
         self.LatchData[0] = 0;
         self.cycleCtr += 1;            
-        self.tree.Fill();        
+        ctrMF = 0;
+        while ctrMF < multiplicativeFactor:
+            self.tree.Fill();
+            ctrMF += 1; 
         
         # secondary
         # set ternary bits
@@ -268,19 +296,28 @@ class inputBuilder:
         
         self.LatchData[0] = 0;
         self.cycleCtr += 1;
-        self.tree.Fill();
-        self.tree.Fill();
+        ctrMF = 0;
+        while ctrMF < multiplicativeFactor:
+            self.tree.Fill();
+            self.tree.Fill();
+            ctrMF += 1; 
         
         self.counter[0] = self.cycleCtr;            
         self.LatchData[0] = 1;
         self.cycleCtr += 1;            
-        self.tree.Fill();
-        self.tree.Fill();
+        ctrMF = 0;
+        while ctrMF < multiplicativeFactor:
+            self.tree.Fill();
+            self.tree.Fill();
+            ctrMF += 1; 
 
         self.counter[0] = self.cycleCtr;            
         self.LatchData[0] = 0;
         self.cycleCtr += 1;            
-        self.tree.Fill();        
+        ctrMF = 0;
+        while ctrMF < multiplicativeFactor:
+            self.tree.Fill();
+            ctrMF += 1; 
         
         #print self.DataOut
 
