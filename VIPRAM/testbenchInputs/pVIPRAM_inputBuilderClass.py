@@ -166,6 +166,9 @@ class inputBuilder:
             self.cycleCtr += 1;
             self.tree.Fill();
             ctrMF += 1; 
+        if ctrMF == 0:
+            self.cycleCtr += 1;
+            self.tree.Fill();
 
         self.counter[0] = self.cycleCtr;            
         self.LatchData[0] = 1;
@@ -176,6 +179,9 @@ class inputBuilder:
             self.cycleCtr += 1;
             self.tree.Fill();
             ctrMF += 1; 
+        if ctrMF == 0:
+            self.cycleCtr += 1;
+            self.tree.Fill();
 
         self.counter[0] = self.cycleCtr;            
         self.LatchData[0] = 0;
@@ -213,6 +219,9 @@ class inputBuilder:
             self.cycleCtr += 1;
             self.tree.Fill();
             ctrMF += 1; 
+        if ctrMF == 0:
+            self.cycleCtr += 1;
+            self.tree.Fill();
         
         self.counter[0] = self.cycleCtr;            
         self.LatchData[0] = 1;
@@ -223,6 +232,9 @@ class inputBuilder:
             self.cycleCtr += 1;
             self.tree.Fill();
             ctrMF += 1; 
+        if ctrMF == 0:
+            self.cycleCtr += 1;
+            self.tree.Fill();
         
         self.counter[0] = self.cycleCtr;            
         self.LatchData[0] = 0;
@@ -267,6 +279,9 @@ class inputBuilder:
             self.cycleCtr += 1;
             self.tree.Fill();
             ctrMF += 1; 
+        if ctrMF == 0:
+            self.cycleCtr += 1;
+            self.tree.Fill();
         
         self.counter[0] = self.cycleCtr;            
         self.LatchData[0] = 1;
@@ -277,6 +292,9 @@ class inputBuilder:
             self.cycleCtr += 1;
             self.tree.Fill();
             ctrMF += 1; 
+        if ctrMF == 0:
+            self.cycleCtr += 1;
+            self.tree.Fill();
         
         self.counter[0] = self.cycleCtr;            
         self.LatchData[0] = 0;
@@ -311,6 +329,9 @@ class inputBuilder:
             self.cycleCtr += 1;
             self.tree.Fill();
             ctrMF += 1; 
+        if ctrMF == 0:
+            self.cycleCtr += 1;
+            self.tree.Fill();
         
         self.counter[0] = self.cycleCtr;            
         self.LatchData[0] = 1;
@@ -321,6 +342,9 @@ class inputBuilder:
             self.cycleCtr += 1;
             self.tree.Fill();
             ctrMF += 1; 
+        if ctrMF == 0:
+            self.cycleCtr += 1;
+            self.tree.Fill();
         
         self.counter[0] = self.cycleCtr;            
         self.LatchData[0] = 0;
