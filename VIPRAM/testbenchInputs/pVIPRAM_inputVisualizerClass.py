@@ -148,9 +148,10 @@ class inputVisualizer:
             olinehex += '{0:01x}'.format(l_RequireLayerA[i]) + " "  
             olinehex += '{0:01x}'.format(l_CheckData[i]) + " "
             for j in range(32): olinehex += '{0:01x}'.format(l_DataOut[i][j])
-            olinehex += " "
-            olinehex += '{0:01x}'.format(l_CompareNow[i]) + " "
-            print "--- olinehex = ", olinehex
+            olinehex += " "            
+#            olinehex += '{0:08x}'.format(l_DataOut[i][j]) + " "
+#            olinehex += '{0:01x}'.format(l_CompareNow[i]) + " "
+            print "--- olinehex =, i: ",i+1,"  ",olinehex
 
     ############################
     def initializeToNegOne(self,h):
@@ -261,8 +262,8 @@ class inputVisualizer:
             
             thisString = ""; 
             
-            #thisString += self.flipBits('{0:01b}'.format(self.tree.CompareNow))            
-            #for j in range(32-1,-1,-1): thisString += '{0:01b}'.format(self.tree.DataOut[j])            
+#            thisString += self.flipBits('{0:01b}'.format(self.tree.CompareNow))            
+            for j in range(32-1,-1,-1): thisString += '{0:01b}'.format(self.tree.DataOut[j])            
             thisString += self.flipBits('{0:01b}'.format(self.tree.CheckData))
             thisString += self.flipBits('{0:01b}'.format(self.tree.RequireLayerA))
             thisString += self.flipBits('{0:01b}'.format(self.tree.Miss2))

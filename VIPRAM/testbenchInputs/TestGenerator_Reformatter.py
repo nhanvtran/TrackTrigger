@@ -93,23 +93,32 @@ inputPattern.checkPattern( [27,27,27,27] ,9);
 inputPattern.checkPattern( [37,37,37,37] ,9);
 inputPattern.checkPattern( [47,47,47,47] ,9);
 for i in range(4):
-    inputPattern.checkPattern( [00,00,00,00] ,9);
+    inputPattern.checkPattern( [01,01,01,01] ,9);
 
 inputPattern.initializeRunPhase( [0,1,0,0] ); 
 inputPattern.checkPattern( [27,27,27,27] ,9);
-inputPattern.checkPattern( [00,37,37,37] ,9);
-inputPattern.checkPattern( [00,00,47,47] ,9);
+inputPattern.checkPattern( [01,37,37,37] ,9);
+inputPattern.checkPattern( [01,01,47,47] ,9);
 for i in range(4):
-    inputPattern.checkPattern( [00,00,00,00] ,9);
+    inputPattern.checkPattern( [01,01,01,01] ,9);
 
 inputPattern.initializeRunPhase( [0,0,1,0] ); 
 inputPattern.checkPattern( [27,27,27,27] ,9);
-inputPattern.checkPattern( [00,37,37,37] ,9);
-inputPattern.checkPattern( [00,00,47,47] ,9);
-inputPattern.checkPattern( [00,00,47,00] ,9);
+inputPattern.checkPattern( [01,37,37,37] ,9);
+inputPattern.checkPattern( [01,01,47,47] ,9);
+inputPattern.checkPattern( [01,01,47,01] ,9);
 for i in range(4):
-    inputPattern.checkPattern( [00,00,00,00] ,9);
+    inputPattern.checkPattern( [01,01,01,01] ,9);
+
+inputPattern.doRowChecker( 7 );
+inputPattern.doRowChecker( 8 );
+inputPattern.doRowChecker( 9 );
+inputPattern.readOutMode();
 inputPattern.close();
+
+#visualizer = inputVisualizer( inputPattern.getFilename() );
+#visualizer.writeToText( "test.txt" );
+
   
 #### TEST 4
 #inputPattern = inputBuilder("Generated_Tests/"+testName+"/"+testName+".root");    

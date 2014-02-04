@@ -158,28 +158,30 @@ class inputBuilder:
         self.iInputD[row][col] = iVal;
         
         self.LatchData[0] = 0;
-        self.cycleCtr += 1;
-
+        
         ctrMF = 0;
         while ctrMF < multiplicativeFactor:
+            self.cycleCtr += 1;
             self.tree.Fill();
+            self.cycleCtr += 1;
             self.tree.Fill();
             ctrMF += 1; 
 
         self.counter[0] = self.cycleCtr;            
         self.LatchData[0] = 1;
-        self.cycleCtr += 1;            
         ctrMF = 0;
         while ctrMF < multiplicativeFactor:
+            self.cycleCtr += 1;
             self.tree.Fill();
+            self.cycleCtr += 1;
             self.tree.Fill();
             ctrMF += 1; 
 
         self.counter[0] = self.cycleCtr;            
         self.LatchData[0] = 0;
-        self.cycleCtr += 1;            
         ctrMF = 0;
         while ctrMF < multiplicativeFactor:
+            self.cycleCtr += 1;
             self.tree.Fill();
             ctrMF += 1; 
 
@@ -203,27 +205,30 @@ class inputBuilder:
         self.InputD[0] = ternary_iVal;
         
         self.LatchData[0] = 0;
-        self.cycleCtr += 1;
+
         ctrMF = 0;
         while ctrMF < multiplicativeFactor:
+            self.cycleCtr += 1;
             self.tree.Fill();
+            self.cycleCtr += 1;
             self.tree.Fill();
             ctrMF += 1; 
         
         self.counter[0] = self.cycleCtr;            
         self.LatchData[0] = 1;
-        self.cycleCtr += 1;            
         ctrMF = 0;
         while ctrMF < multiplicativeFactor:
+            self.cycleCtr += 1;
             self.tree.Fill();
+            self.cycleCtr += 1;
             self.tree.Fill();
             ctrMF += 1; 
-
+        
         self.counter[0] = self.cycleCtr;            
         self.LatchData[0] = 0;
-        self.cycleCtr += 1;            
         ctrMF = 0;
         while ctrMF < multiplicativeFactor:
+            self.cycleCtr += 1;
             self.tree.Fill();
             ctrMF += 1; 
 
@@ -254,27 +259,30 @@ class inputBuilder:
         self.iInputD[row][col] = iVal[3];
         
         self.LatchData[0] = 0;
-        self.cycleCtr += 1;
+
         ctrMF = 0;
         while ctrMF < multiplicativeFactor:
+            self.cycleCtr += 1;
             self.tree.Fill();
+            self.cycleCtr += 1;
             self.tree.Fill();
             ctrMF += 1; 
         
         self.counter[0] = self.cycleCtr;            
         self.LatchData[0] = 1;
-        self.cycleCtr += 1;            
         ctrMF = 0;
         while ctrMF < multiplicativeFactor:
+            self.cycleCtr += 1;
             self.tree.Fill();
+            self.cycleCtr += 1;
             self.tree.Fill();
             ctrMF += 1; 
-
+        
         self.counter[0] = self.cycleCtr;            
         self.LatchData[0] = 0;
-        self.cycleCtr += 1;            
         ctrMF = 0;
         while ctrMF < multiplicativeFactor:
+            self.cycleCtr += 1;
             self.tree.Fill();
             ctrMF += 1; 
         
@@ -295,27 +303,30 @@ class inputBuilder:
         self.InputD[0] = ternary_iVal_3;
         
         self.LatchData[0] = 0;
-        self.cycleCtr += 1;
+
         ctrMF = 0;
         while ctrMF < multiplicativeFactor:
+            self.cycleCtr += 1;
             self.tree.Fill();
+            self.cycleCtr += 1;
             self.tree.Fill();
             ctrMF += 1; 
         
         self.counter[0] = self.cycleCtr;            
         self.LatchData[0] = 1;
-        self.cycleCtr += 1;            
         ctrMF = 0;
         while ctrMF < multiplicativeFactor:
+            self.cycleCtr += 1;
             self.tree.Fill();
+            self.cycleCtr += 1;
             self.tree.Fill();
             ctrMF += 1; 
-
+        
         self.counter[0] = self.cycleCtr;            
         self.LatchData[0] = 0;
-        self.cycleCtr += 1;            
         ctrMF = 0;
         while ctrMF < multiplicativeFactor:
+            self.cycleCtr += 1;
             self.tree.Fill();
             ctrMF += 1; 
         
@@ -373,6 +384,7 @@ class inputBuilder:
                 self.iCamStateB[i][j] = 0;
                 self.iCamStateC[i][j] = 0;
                 self.iCamStateD[i][j] = 0;
+                self.iDataOut[i][j] = 0;
 
         self.InputA[0] = 0;
         self.InputB[0] = 0;
@@ -398,6 +410,53 @@ class inputBuilder:
         self.tree.Fill();
 
         #print self.DataOut
+
+    # -------------------
+    # changeLogic
+    def changeLogic(self, logic = [1,1,1,1]):
+        #print "initializing run phase..."
+        
+        self.counter[0] = self.cycleCtr;
+        
+        self.MLpreCh[0] = 1;
+        self.RowAdr[0] = 0; #rows 0-127
+        self.ColAdr[0] = 0; #cols 0-31
+        self.RunMode[0] = 1;
+        self.LatchData[0] = 0;
+        self.Primary[0] = 0;
+        self.EventReset[0] = 0;
+        for i in range(128):
+            for j in range(32):
+                self.iCamStateA[i][j] = 0;
+                self.iCamStateB[i][j] = 0;
+                self.iCamStateC[i][j] = 0;
+                self.iCamStateD[i][j] = 0;
+        
+        self.InputA[0] = 0;
+        self.InputB[0] = 0;
+        self.InputC[0] = 0;
+        self.InputD[0] = 0;
+        self.InputA_bit0[0] = 0;
+        self.InputB_bit0[0] = 0;
+        self.InputC_bit0[0] = 0;
+        self.InputD_bit0[0] = 0;
+        
+        self.Miss0[0] = logic[0];
+        self.Miss1[0] = logic[1];
+        self.Miss2[0] = logic[2];
+        self.RequireLayerA[0] = logic[3];
+        self.majorityLogic = logic;
+        
+        self.CheckData[0] = 0;
+        self.CompareNow[0] = 0;                
+        for i in range(32): self.DataOut[i] = 0;
+        
+        #fill, ctr++
+        self.cycleCtr += 1;
+        self.tree.Fill();
+
+    #print self.DataOut
+
 
 
     # -------------------
@@ -436,18 +495,26 @@ class inputBuilder:
             self.CompareNow[0] = 0;                    
             for i in range(32): self.DataOut[i] = 0;
 
-            #fill, ctr++
-            self.cycleCtr += 1;
-            self.tree.Fill();
+#            #fill, ctr++
+#            self.cycleCtr += 1;
+#            self.tree.Fill();
         
             #self.MLpreCh[0] = 0;
             #self.counter[0] = self.cycleCtr;
             #self.cycleCtr += 1;
             #self.tree.Fill();
+
+            self.cycleCtr += 1;
+                        
             self.setInternalCams( pattern );
             self.checkLogicInternally();
 
             #print self.DataOut
+            for i in range(32): self.DataOut[i] = self.iDataOut[specificRow][i];
+
+            #fill, ctr++
+            self.tree.Fill();
+
 
     # setInternalCams
     def setInternalCams(self, pattern):
@@ -476,6 +543,16 @@ class inputBuilder:
                 
                 bLogic = False;    
                 if (missCtr == 4 and self.majorityLogic[0] == 1) or (missCtr == 3 and self.majorityLogic[1] == 1) or (missCtr == 2 and self.majorityLogic[2] == 1) or (missCtrA == 1 and self.majorityLogic[3] == 1): bLogic = True;
+                
+                passMiss0 = 0;
+                passMiss1 = 0;
+                passMiss2 = 0;
+                passReqLayA = 0;                    
+                if (missCtr == 4 and self.majorityLogic[0] == 1): passMiss0 = 1;
+                if (missCtr == 3 and self.majorityLogic[1] == 1): passMiss1 = 1;
+                if (missCtr == 2 and self.majorityLogic[2] == 1): passMiss2 = 1;
+                if (missCtrA == 1 and self.majorityLogic[3] == 1): passReqLayA = 1;            
+                print "self.cycleCtr = ", self.cycleCtr, " -- ", bLogic,",",i, ",",passMiss0,",",passMiss1,",",passMiss2,",",passReqLayA
 
                 if bLogic: self.iDataOut[i][j] = 1;
 
@@ -504,6 +581,7 @@ class inputBuilder:
     # loadRowChecker
     def doRowChecker( self, row ):
 
+        self.CheckData[0] = 1;                    
         self.CompareNow[0] = 1;        
         self.RowAdr[0] = row;
         for i in range(32): self.DataOut[i] = self.iDataOut[row][i];
@@ -513,51 +591,13 @@ class inputBuilder:
         self.tree.Fill();
 
         #print self.DataOut
-        
-        self.CompareNow[0] = 0;                    
         for i in range(32): self.DataOut[i] = 0;
 
     ##################################################
     # -------------------
     # readOutMode
-    def readOutMode(self, logic = [-99,-99,-99,-99]):
-
-        # logic doesn't change unless inputted
-        if logic[0] >= 0 and logic[1] >= 0 and logic[2] >= 0 and logic[3] >= 0:
-            self.Miss0[0] = logic[0];
-            self.Miss1[0] = logic[1];
-            self.Miss2[0] = logic[2];
-            self.RequireLayerA[0] = logic[3];
-            self.majorityLogic = logic;        
-        
-        self.CheckData[0] = 1;
-        self.ColAdr[0] = 0; #cols 0-31
-        self.RunMode[0] = 1
-        self.LatchData[0] = 0;
-        self.Primary[0] = 0;
-        self.EventReset[0] = 0;
-        self.InputA[0] = 0;
-        self.InputB[0] = 0;
-        self.InputC[0] = 0;
-        self.InputD[0] = 0;
-        self.InputA_bit0[0] = 0;
-        self.InputB_bit0[0] = 0;
-        self.InputC_bit0[0] = 0;
-        self.InputD_bit0[0] = 0;
-        
-        self.Miss0[0] = self.majorityLogic[0];
-        self.Miss1[0] = self.majorityLogic[1];
-        self.Miss2[0] = self.majorityLogic[2];
-        self.RequireLayerA[0] = self.majorityLogic[3];
-
-        self.checkLogicInternally();
-        
-        for row in range(128):
-            self.RowAdr[0] = row;
-            for i in range(32): self.DataOut[i] = self.iDataOut[row][i];
-            self.counter[0] = self.cycleCtr;
-            self.cycleCtr += 1;
-            self.tree.Fill();
+    def readOutMode(self):
+        for i in range(128): self.doRowChecker(i)
 
     ##################################################
     # -------------------
