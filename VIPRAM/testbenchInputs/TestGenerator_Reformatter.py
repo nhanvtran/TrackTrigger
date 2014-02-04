@@ -148,6 +148,7 @@ visuA = inputVisualizer( inputPattern.getFilename() );
 visuA.textVisualizer();
 
 visuA.writeToText("Generated_Tests/"+testName+"/"+testName+".txt"); # write outputs
+visuA.writeToText("Generated_Tests/"+testName+"/"+testName+"_withExpectedOutputs.txt",True); # write outputs
 
 shutil.copyfile("Generated_Tests/"+testName+"/"+testName+".txt" ,"Generated_Tests/"+ testName + "/inputPattern.txt" ) 
 shutil.copyfile("TestGenerator_Reformatter.py","Generated_Tests/"+ testName+"/"+testName + ".py" ) 
