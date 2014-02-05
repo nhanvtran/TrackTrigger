@@ -263,7 +263,8 @@ class inputVisualizer:
             thisString = ""; 
             
 #            thisString += self.flipBits('{0:01b}'.format(self.tree.CompareNow))            
-            if writeExpectedOutput: for j in range(32-1,-1,-1): thisString += '{0:01b}'.format(self.tree.DataOut[j])            
+            if writeExpectedOutput: 
+                for j in range(32-1,-1,-1): thisString += '{0:01b}'.format(self.tree.DataOut[j])            
             thisString += self.flipBits('{0:01b}'.format(self.tree.CheckData))
             thisString += self.flipBits('{0:01b}'.format(self.tree.RequireLayerA))
             thisString += self.flipBits('{0:01b}'.format(self.tree.Miss2))
