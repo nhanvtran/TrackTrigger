@@ -460,10 +460,10 @@ class inputBuilder:
         self.InputB[0] = 0;
         self.InputC[0] = 0;
         self.InputD[0] = 0;
-        self.InputA_bit0[0] = 0;
-        self.InputB_bit0[0] = 0;
-        self.InputC_bit0[0] = 0;
-        self.InputD_bit0[0] = 0;
+        self.InputA_bit0[0] = 1;
+        self.InputB_bit0[0] = 1;
+        self.InputC_bit0[0] = 1;
+        self.InputD_bit0[0] = 1;
         
         self.Miss0[0] = logic[0];
         self.Miss1[0] = logic[1];
